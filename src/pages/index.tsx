@@ -1,114 +1,84 @@
 import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { FC } from "react";
+const index: FC = () => {
+    return (
+        <>
+            <div className='w-screen h-screen flex flex-col justify-center items-center'>
+                <h1 className='text-5xl text-white mb-10'> بازی دور</h1>
+                <div className='centerImage space-y-6 h-[400px] w-[400px] flex flex-col justify-center items-center rounded-lg'>
+                    <button className='flex justify-center items-center flex-col'>
+                        <h2 className='text-black text-2xl font-bold'>
+                            ...انفرادی به زودی
+                        </h2>
+                        <div className='w-52 h-16 rounded-xl justify-evenly p-3 flex items-center bg-slate-500'>
+                            <Image
+                                width={44}
+                                height={44}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiUlEQVR4nO2Vz2tTQRDHn1p/gHrxKHpSUCMqzUxC9RLoX1DQGPFQxIOCHsSD3tRbT1UQf4AoVFP7ZvpOglgsFIqCnvQioiBITWcTkZbcerHVyLx9jybv5SWxwZMZ2MvO7PezOzuz6zg969l/bbWas04YzgvheyFcEsYFw3i75uU3/FOwEI4axlpsEH4wDPmuAfPewA5hmNFTGYaizpUI9gjjr6ZgO36W3P6dGmsYJ2xGYEa1OoIaxlOGsRIKCuMdfzMEp1tA7ZjEszYzcK9uvmwICy2hX6b2bjaM1cY0woi/IcIr7cBlhqs2FkYivupHL7UpESycPRIXtKkuMwx1AB6yWYNi1DfvwaFEcMnNYHSBMNz9W7Aw3o/6Sm4GE8ELz45tF4KVCHgsSHWh7R0HlS2Ejxs0CJZVu9WJDzYRLL97ABtrN5z1huBpIpRgXGP0LuuLMxwVL5tKBCtAGD/H0k04qv4K9R+wLRbzLxkP9yX1ujB+Uu1EcFAY+bgwLMt4dpe9PxhuUgfDwXXs1tgm4ONOO/NTyjAVeZle6nPpg930YEzYTQ+uPqk4HVn7QjXbgv2du3gx2Ok3Q5kztdlcn87/8FLbYsI2blp9Pnw216dr/LXWf6EzqJc5agiMIXzyvXh4q85pwQjhOSEsJRWX+jQmfCh0rd/PBEY4PZAIrHhpEIbnQvjbED4MU2smMydbAZttIGyrIPWPVFO1ldF4SsLrq/0LX/Xp1EWG8VanwCbpv6kac2O5LcIwFxTpiiG4Vv8p1O/4ki0iOLFWaLSaxYXLkYIr6E/ytn6yPAH7/WDG192CDcEre43ZVKT93jjR3ygsKCFY7PrEBIthN5hGX7WjSu9Zz5w12B8pcvYKg2Gx2AAAAABJRU5ErkJggg=='
+                                alt='group'
+                            />
+                            <h2 className='text-white font-black text-3xl'>
+                                VS
+                            </h2>
+                            <Image
+                                width={36}
+                                height={36}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACd0lEQVR4nO2ZTYhNcRTADxLJxkiyRSkh3jkvUwpJWFgaNmyUna0slMlHKTULTRZYzIL3znl3MQuLyVoISfmYaBqZ9855ExpqsjGe3tV9ZXzMR/fde73/n+6vzvp/fv3P+X8C5OTkOKFaorXKdEyFLirjVRO6Yoxn6oI7whAWgO/UGfeZ0EMTCucKZbpXC7q7wFdM6JIyNeeT+EWmaozXtbxtC/hEnfFkHIFZ4qtV6Dj4QLW0eYUKTiYUCZWxURPa5NoDtEJHk0pMB9MNH3qjlFZEGV+79gBjepSByLeRofVL3IoIjqQuLaHwfbBxuWMRGs1CpH4blzkVUcYHqUtLcBJcY4KDGYg8de0BKnguvQj1u/YA48LB1CJlPOTaA+qChbQi40EBfdhH7qRftXDIh2Z/mVqE8YVrD1CmcgYit1x7RBvi3rj3kFkbnamp5cIe8IFauXggqUhNCvvBJ0zwTQKRUfANFepru6yE+sA3qozrjGkqfm9gwwLaAD6iTBf+6dn4QfRmFWdfUaGxMOhZBD5jMW6MyjgMvmOMj2PMyCvwHWUcjrEJVsFnnlzDxcr0IYbI57cDu5aCr5hQb/xVCy+Db9SC7i4VHEhw5iqNB1tXuc4f3pW3rzams3HKaZ4VbEKFzo/dxDUdF6hJcWfrhZHpS1KBGcE0pYKijLv/6h9K2AsLo7u1CT3LLPm5pZ5bpXg4GjNTCZVCd0cEZKZQNHY2EpXiidYBr9MSMt1DjSiHVBLGdCTN7S87GWqaYE/iDxxj/Ohawn7GJxssrmxbRBlPe5B8+FswnWpfRPC+88TljxITutu2SGsqfRNhnGhbJCcnB/4bvgO1Q2RRjhYPPwAAAABJRU5ErkJggg=='
+                                alt='user'
+                            />
+                        </div>
+                    </button>
+                    <Link
+                        href={"/Games/multipleGame"}
+                        className='flex justify-center items-center flex-col'
+                    >
+                        <h2 className='text-black text-2xl font-bold'>
+                            دو به دو
+                        </h2>
+                        <div className='w-52 h-16 rounded-xl justify-evenly p-3 flex items-center bg-slate-500'>
+                            <Image
+                                width={40}
+                                height={40}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB10lEQVR4nO2VvUscURTFp7JQG0FRQTtBERTdezepI0QFrawV7AT/AjtBhBRqaWXnZuddp4xFQPwHRLHSWt37xo/KD0RXESJvd4VNdOadRCEWXrjV/Djn3fM+Jgg+6n9XnKcuK7RqhWMrdKtCuxpmBiDW8I4KfflrU2syo9Zw0Qr/+q0NX6jQ1FG+pwFgz63wdJynRtCU21Xo8plQVauQoKwV0oMo2+I1VqGFdCE3TXYSZksL5Xm/saF9r1jEnTBbnnoPiJpufEJnUXc9ypYmNnQFRM1nPqGT1d46lIWNrdBPn1AslEHZymHcBCamdZ9QIervQNmK8Tqyx9YndBz1NaHs05UKgD1e8kYd0leULe8xL3qNKxFupooZXkFZFd6ATF0Vwuxw6sSGBv+FhcoKf0sQm0VZNTSDuf1RL4m9Bfs+jdXw2IvxhTQCs4bHYMPT8HOzCs8l/GO33E8fYst80X13XKKhE1RDxhq+S3gEtuMfVIuxzxZw5/jqRT9FNWGF71Pu4rXmPrUhrKfvdY3HS6YF4awaekh/eWgZZX2thh6cjntvv/vggmSGnDHCYtFTzr23hz7wMEetpZgBFppa6CBIPJFVvRd115Qn9rPgYSvC1+yjglfWI7+5Dm48LA6IAAAAAElFTkSuQmCC'
+                                alt='user-group-man-man'
+                            />
+                            <h2 className='text-white font-black text-3xl'>
+                                VS
+                            </h2>
+                            <Image
+                                width={40}
+                                height={40}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB10lEQVR4nO2VvUscURTFp7JQG0FRQTtBERTdezepI0QFrawV7AT/AjtBhBRqaWXnZuddp4xFQPwHRLHSWt37xo/KD0RXESJvd4VNdOadRCEWXrjV/Djn3fM+Jgg+6n9XnKcuK7RqhWMrdKtCuxpmBiDW8I4KfflrU2syo9Zw0Qr/+q0NX6jQ1FG+pwFgz63wdJynRtCU21Xo8plQVauQoKwV0oMo2+I1VqGFdCE3TXYSZksL5Xm/saF9r1jEnTBbnnoPiJpufEJnUXc9ypYmNnQFRM1nPqGT1d46lIWNrdBPn1AslEHZymHcBCamdZ9QIervQNmK8Tqyx9YndBz1NaHs05UKgD1e8kYd0leULe8xL3qNKxFupooZXkFZFd6ATF0Vwuxw6sSGBv+FhcoKf0sQm0VZNTSDuf1RL4m9Bfs+jdXw2IvxhTQCs4bHYMPT8HOzCs8l/GO33E8fYst80X13XKKhE1RDxhq+S3gEtuMfVIuxzxZw5/jqRT9FNWGF71Pu4rXmPrUhrKfvdY3HS6YF4awaekh/eWgZZX2thh6cjntvv/vggmSGnDHCYtFTzr23hz7wMEetpZgBFppa6CBIPJFVvRd115Qn9rPgYSvC1+yjglfWI7+5Dm48LA6IAAAAAElFTkSuQmCC'
+                                alt='user-group-man-man'
+                            />
+                        </div>
+                    </Link>
+                    <button className='flex justify-center items-center flex-col'>
+                        <h2 className='text-black text-2xl font-bold'>بازی گروهی به زودی...</h2>
+                        <div className='w-52 h-16 rounded-xl justify-evenly p-3 flex items-center bg-slate-500'>
+                            <Image
+                                width={44}
+                                height={44}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiUlEQVR4nO2Vz2tTQRDHn1p/gHrxKHpSUCMqzUxC9RLoX1DQGPFQxIOCHsSD3tRbT1UQf4AoVFP7ZvpOglgsFIqCnvQioiBITWcTkZbcerHVyLx9jybv5SWxwZMZ2MvO7PezOzuz6zg969l/bbWas04YzgvheyFcEsYFw3i75uU3/FOwEI4axlpsEH4wDPmuAfPewA5hmNFTGYaizpUI9gjjr6ZgO36W3P6dGmsYJ2xGYEa1OoIaxlOGsRIKCuMdfzMEp1tA7ZjEszYzcK9uvmwICy2hX6b2bjaM1cY0woi/IcIr7cBlhqs2FkYivupHL7UpESycPRIXtKkuMwx1AB6yWYNi1DfvwaFEcMnNYHSBMNz9W7Aw3o/6Sm4GE8ELz45tF4KVCHgsSHWh7R0HlS2Ejxs0CJZVu9WJDzYRLL97ABtrN5z1huBpIpRgXGP0LuuLMxwVL5tKBCtAGD/H0k04qv4K9R+wLRbzLxkP9yX1ujB+Uu1EcFAY+bgwLMt4dpe9PxhuUgfDwXXs1tgm4ONOO/NTyjAVeZle6nPpg930YEzYTQ+uPqk4HVn7QjXbgv2du3gx2Ok3Q5kztdlcn87/8FLbYsI2blp9Pnw216dr/LXWf6EzqJc5agiMIXzyvXh4q85pwQjhOSEsJRWX+jQmfCh0rd/PBEY4PZAIrHhpEIbnQvjbED4MU2smMydbAZttIGyrIPWPVFO1ldF4SsLrq/0LX/Xp1EWG8VanwCbpv6kac2O5LcIwFxTpiiG4Vv8p1O/4ki0iOLFWaLSaxYXLkYIr6E/ytn6yPAH7/WDG192CDcEre43ZVKT93jjR3ygsKCFY7PrEBIthN5hGX7WjSu9Zz5w12B8pcvYKg2Gx2AAAAABJRU5ErkJggg=='
+                                alt='group'
+                            />
+                            <h2 className='text-white font-black text-3xl'>
+                                VS
+                            </h2>
+                            <Image
+                                width={44}
+                                height={44}
+                                src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiUlEQVR4nO2Vz2tTQRDHn1p/gHrxKHpSUCMqzUxC9RLoX1DQGPFQxIOCHsSD3tRbT1UQf4AoVFP7ZvpOglgsFIqCnvQioiBITWcTkZbcerHVyLx9jybv5SWxwZMZ2MvO7PezOzuz6zg969l/bbWas04YzgvheyFcEsYFw3i75uU3/FOwEI4axlpsEH4wDPmuAfPewA5hmNFTGYaizpUI9gjjr6ZgO36W3P6dGmsYJ2xGYEa1OoIaxlOGsRIKCuMdfzMEp1tA7ZjEszYzcK9uvmwICy2hX6b2bjaM1cY0woi/IcIr7cBlhqs2FkYivupHL7UpESycPRIXtKkuMwx1AB6yWYNi1DfvwaFEcMnNYHSBMNz9W7Aw3o/6Sm4GE8ELz45tF4KVCHgsSHWh7R0HlS2Ejxs0CJZVu9WJDzYRLL97ABtrN5z1huBpIpRgXGP0LuuLMxwVL5tKBCtAGD/H0k04qv4K9R+wLRbzLxkP9yX1ujB+Uu1EcFAY+bgwLMt4dpe9PxhuUgfDwXXs1tgm4ONOO/NTyjAVeZle6nPpg930YEzYTQ+uPqk4HVn7QjXbgv2du3gx2Ok3Q5kztdlcn87/8FLbYsI2blp9Pnw216dr/LXWf6EzqJc5agiMIXzyvXh4q85pwQjhOSEsJRWX+jQmfCh0rd/PBEY4PZAIrHhpEIbnQvjbED4MU2smMydbAZttIGyrIPWPVFO1ldF4SsLrq/0LX/Xp1EWG8VanwCbpv6kac2O5LcIwFxTpiiG4Vv8p1O/4ki0iOLFWaLSaxYXLkYIr6E/ytn6yPAH7/WDG192CDcEre43ZVKT93jjR3ygsKCFY7PrEBIthN5hGX7WjSu9Zz5w12B8pcvYKg2Gx2AAAAABJRU5ErkJggg=='
+                                alt='group'
+                            />
+                        </div>
+                    </button>
+                </div>
+                <h2 className='text-3xl text-white py-4'>1.0.0نسخه </h2>
+            </div>
+        </>
+    );
+};
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+export default index;
