@@ -1,21 +1,22 @@
-import UserShow from "@/Components/UserShow";
-import React, { useEffect, useState } from "react";
+import UserShow from "@Components/UserShow";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {v4 as uuidv4} from "uuid"
 export interface State {
     usersNum: number;
-    turn: number;
+    turns: number;
     time: number;
 }
 export interface ElemType {
     id: string;
     name: string;
-    color:string
+    color:string,
+    groupNumber:number,
+    groupScore:number
 }
 const usersCheck = () => {
     const [state, setState] = useState<State>();
     const userNumArray: number[] = [];
-    console.log("🚀 ~ usersCheck ~ userNumArray:", userNumArray)
     const colorArr = [
         "bg-rose-500",
         "bg-sky-500",
@@ -29,6 +30,9 @@ const usersCheck = () => {
         setState(JSON.parse(localInfo));
         const localUsers: any = localStorage.getItem("multipleGameUsers");
         setElem(JSON.parse(localUsers) ?? []);
+        localStorage.removeItem('gameWinnerStatus')
+        localStorage.removeItem('multipleGameTurns')
+        localStorage.removeItem('winners')
     }, []);
     if (state) {
         for (let i = 1; i <= state.usersNum; i++) {
@@ -37,14 +41,13 @@ const usersCheck = () => {
     }
     const [username, setUsername] = useState<string>("");
     let usedColors: any[] = [];
-    console.log("🚀 ~ usersCheck ~ usedColors:", usedColors)
     if (userNumArray.length > 3 && state) {
         userNumArray.map((i: number) => {
             if (i <= state.usersNum / 2) { 
                 usedColors.push(colorArr[i - 1]);
             } else {
-                const j = i - state.usersNum / 2;
-                usedColors.push(colorArr[j - 1]);  
+                const j = (i - state.usersNum / 2)-1;
+                usedColors.push(colorArr[j]);  
             }
         });
     }
@@ -56,6 +59,34 @@ const usersCheck = () => {
         setElem((el: ElemType[]) => el.filter((e) => e.id !== id));
     }
     
+    function handleAddUser(){
+        if (
+            username.length > 0 &&
+            state &&
+            elem.length < state.usersNum
+        ) {
+            setElem([
+                ...elem,
+                {
+                    id: uuidv4(),
+                    name: username,
+                    color: usedColors[elem.length],
+                    groupNumber:(elem.length < state.usersNum / 2) ? elem.length +1 : elem.length - state.usersNum / 2 +1,
+                    groupScore:0
+                },
+            ]);
+            setUsername("");
+        } else {
+            alert("مجاز نیست!");
+        }
+    }
+    if(typeof document != 'undefined' ){
+        document.onkeydown = (event) => {
+            if(event.key === 'Enter'){
+                handleAddUser()
+            }
+        }
+    }
     return (
         <>
             <div className='w-screen h-screen flex flex-col justify-between items-center bg-blue-950'>
@@ -90,25 +121,7 @@ const usersCheck = () => {
                         <button
                             type='button'
                             suppressHydrationWarning
-                            onClick={() => {
-                                if (
-                                    username.length > 0 &&
-                                    state &&
-                                    elem.length < state.usersNum
-                                ) {
-                                    setElem([
-                                        ...elem,
-                                        {
-                                            id: uuidv4(),
-                                            name: username,
-                                            color: usedColors[elem.length]
-                                        },
-                                    ]);
-                                    setUsername("");
-                                } else {
-                                    alert("مجاز نیست!");
-                                }
-                            }}
+                            onClick={handleAddUser}
                             className='w-10 h-10 mr-2 hover:bg-indigo-600 duration-300 rounded-full flex justify-center items-center bg-indigo-700 border-2 text-green-400 text-xl font-black border-cyan-300'
                         >
                             <i className='fa fa-check'></i>

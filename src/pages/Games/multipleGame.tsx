@@ -1,13 +1,18 @@
 import React, { FC, useEffect, useState } from "react";
 import MenuInclimentButton from "@Components/MenuIncrimentButtons";
-import MenuDecrimentButton from "@/Components/MenuDecrimentButton";
-import MenuContainer from "@/Components/MenuContainer";
+import MenuDecrimentButton from "@Components/MenuDecrimentButton";
+import MenuContainer from "@Components/MenuContainer";
 import Link from "next/link";
 
 const multipleGame: FC = () => {
     const [usersNum, setUsers] = useState<number>(4);
     const [time, setTime] = useState<number>(2);
     const [turns, setTurns] = useState<number>(4);
+    useEffect(()=>{
+        localStorage.removeItem('gameWinnerStatus')
+        localStorage.removeItem('winners')
+    },[])
+
     return (
         <>
             <div className='w-screen h-screen flex flex-col justify-center items-center'>

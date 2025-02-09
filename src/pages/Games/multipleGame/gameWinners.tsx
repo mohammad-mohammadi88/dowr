@@ -1,0 +1,31 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+
+const gameWinners = () => {
+    const [winners, setWinners] = useState<string[]>()
+    useEffect(()=>{
+        const winnersArray: any = localStorage.getItem('winners');
+        setWinners(JSON.parse(winnersArray))
+    },[])
+    return (
+        <div className='w-screen h-screen flex flex-col justify-around items-center bg-blue-950 py-8'>
+            <h1 className='text-6xl flex items-center text-white'>
+                <Image width={80} height={80} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHFElEQVR4nO2Ye0xTZxTAjyN7uEe2xb0Y0pbyrDwsMPcQGOBjTkoLy4aKyzad849lW/bHsoeiFCgIyATRmM1F3RbnxFoLpWU8Ci1vBVHL5pKFZW7ZihOY9HFb2kt7OUtv1waxMFAomvhLbki5/T7Oj3PP9537AdwBANVw3239f7C2wnfWJhC4PpvE8NTV4+APtwtkO8gtahgzN8A3JjmoDFKw68QQALcLo6ehkWwFtDQCmmsBCRmcgdsBPA+PUxqosp8FHO0AtKoBR+oB9dK7T8KtDiLcRWkgn+qFQeo8oO0MoCsLphpAYyWkT2ceshk2YicshPkCxeCDGljvysKlQ0F4sSx87Kr4PjmK/z8wsg1klmb4ydoAnPG/1x+DR3UV8Cp4A0RYYO+Bv/rF/gPZjBOY5VeB232PiaYzdrQdpGQL4IgKTJZ62GJSwBtENSgMUiD1J+Bb8BaUBoqUH76elO0voXYuFmOW3/GfpzNutBMkZJuzfixK5yJgUgASVYAGCaSAN2vC8VPIlDYK/SXokNjOOOo75Rgx+Ix2QZPj0XNkwdLkXATMNbTAMIrhHvA2uQGy93OYlUhL+ItXT/Y9PAdM+wVocdSO7TTgxCwQ1SCD+SAvUBGbx5KhQyKbIXnD03fwR8igNHB1rBeQOgdo63IuAOOzYKoBipDBCq8L5DNqffPZcqQlGNKt1wXfCQtRA+9SmgUNtnM+FHUBcIosaI1ieHxWA9Qyo1/QMrlGLYub7em+cIn6wYLAGqQlmJUbPc+CC3b4VXwjCjqMFZnvIXnGx50F64RaMFZBLQqd9TUr9LO4R/pZXHRcWia3eOL9Mqb6kcKgOnRI5LIUz3maI5shKcj2P4k7/E5g1tPHse9IBNq7AUc76c2w0KIENn0pnBcehLtnJXiEDB8tc+mQS8CTRHFowzPFIQ24K6jOLvStvn/iHDmsqq10kTNOoUuidQev095D7+Y9eHEOV57BTRFvX+YsdQfvSaKEo9qyO7QRi4LreyeOz2creCKWzJbHqqKLXMiQjO30P5mDF8DPfg4I7IZQmEv0ZdE/6g6G4uXwySVKOc3yzzkq3B3amDUxMwXsGlM+W4GigGrMY1aROYxTr7vuYy+8OKfBOwpppDrObm6KwckkLrESDpSFt5KlS5qp0mAl2zW2MFjJLg6pv1IYXIe7An9AUYDCmMuSrwFvYhIlb7WdfgmtrQk4lYQq5GMsC29zt9P7w5SLSsIaf3E8Vs7aqO3PD1ZwwdtY9q5tpc4K8BqJL0LRU038yl512DFmz/OdC0s5zR17OGosCWvC3SHKi0VsJQPmgyuxy/vIo6l4ncQkmfiLGb17b2THqbLwNixd0oKfc1SqIrby4fkJPiI+aiAyDgei43AmEuqQT7A8soN+pIRM9fydXAwsTcwZiErAG5E4G7jpNAIucM0lBOFdhaHKpF2BdaKCwBpFfoD8zzymjBAypSbh4pOXdy4WN2U9XVG0zfe7OGuLD8+ihlXjY7mhXXkoJrF3kJuINyrhWGL3h3UtKl3SLCrhqLSugi78b8d2906uLpZ+n6jAU29t7qdPO+pARCggmaiELwxiODaz4HcuWzmcFY1DMUl4MxLq4I9IVz2UcFSG4hBlfVFI/b5dgbXbCgJrikRs+YFcpqxFyJBaXRInNnzgbPBUgCN1gKZqQKMEtsxIgChPqDEpo3A2JDqC3r20h9OeUh70w72T/b0itvhhIaPynfJl+/t+PxpK90fWZsARJf2mNmashsdmJGCRrCIsLctxtiQ8NYATwQvwCtULevq0o8vZZjs6VLMzC5/BdDEXpsdSXak42rkSvSmBfXAvauBlqhe+tHWD1Z2FBkBCATajFOKnJUC8w8+l2l5BqnuCxDauVzLhgDoP1fSZUxvsMasg1lwPsXoFuNuUKRlO5DUZMlORavUg4a3HSQNb7N3Qgz0zfCcwrExfNJzEt+kSU3E+JVADT+B5CIaZoksWbNYlC1CXxMc5l2BFu4/mZw39ujWN+hVpONcSWhb3t7/ZURGzGjxRwH/SIIsY029ehTclEROH5Pf86yT+yQ8jtMyl5f3sqHgEcLcZs4Zp3+p9I+pn0aCIwJuW+C8TpDzFatqb2GzY/jwf5hqygvcn2Z6ENyMxwE2krkQmtA9Exn86GLUsBLwFfrT6AaojfczetRavkdjkSYKP4/eJkaY4NByK0Q2tXy4ajE2Y8lx0zjDwMgSWnAwcO5uO10l4ysTGVJI8ntY/Uppy2PLZS0Ew3xC8dV8bU9bhlBLJaSZdskA+nMx7c2i54CG4VcCMDB+Cv36I4K1Hh4RV9JpbwtqQTJm/SugziuK3Y0aG94+9p4M5PfNZkyATCf4GpCXWrvuDLHxNPnog7QMU3qJBj2dI8PZDRFrmYUKwocDM2xh7zc073OEOcCvyL+gOiCF08AP9AAAAAElFTkSuQmCC" alt="celebrate" />
+                   &ensp; Congratulations!!&ensp;
+                <Image width={80} height={80} src="data:image/png;base64,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" alt="celebrate" />
+            </h1>
+            <h2 className='text-5xl text-white font-black flex' dir='ltr'>
+                {winners &&<><div className='mr-2'> {winners[0]} </div> and <div className='mx-2'> {winners[1]} </div> </>} win this game!
+            </h2>
+            <button onClick={()=>{
+                localStorage.removeItem('winners')
+            }} className='bg-white rounded-full w-80 h-10'>
+
+                <Link href={'/'}>back to home</Link>
+            </button>
+        </div>
+    )
+}
+
+export default gameWinners

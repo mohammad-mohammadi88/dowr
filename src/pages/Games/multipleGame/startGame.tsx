@@ -1,5 +1,5 @@
-import UserGamePlay from "@/Components/UserGamePlay";
-import React, { FC, useEffect, useLayoutEffect, useState } from "react";
+import UserGamePlay from "@Components/UserGamePlay";
+import { FC, useEffect, useLayoutEffect, useState } from "react";
 import { ElemType, State } from "./usersCheck";
 export interface eachWord {
     id: number;
@@ -42,11 +42,10 @@ const startGame: FC<Props> = ({ JsonWords }) => {
     function randomWords() {
         return ById[AllIds[Math.floor(Math.random() * AllIds.length)]];
     }
-    function returningGroup(array:any,index:number){
-        console.log(array[index])
+    function returningGroup(array:any[],index:number){
         if(gameInfo) return index < (gameInfo.usersNum / 2) ? array[index] : array[index - gameInfo.usersNum / 2]
     }
-    function findTimeState(g1:any,g2:any,g3:any,g4:any,g5:any,index:number){
+    function findState(g1:any,g2:any,g3:any,g4:any,g5:any,index:number){
         let arr1 = [g1,g2]
         let arr2 = [g1,g2,g3]
         let arr3 = [g1,g2,g3,g4]
@@ -63,19 +62,23 @@ const startGame: FC<Props> = ({ JsonWords }) => {
     return (
         <div className='w-screen h-screen flex flex-col justify-between items-center bg-blue-950 py-8'>
             <div className='w-80'>
-                {usersName &&
+                {usersName && gameInfo &&
                     usersName.map((user: ElemType, index) => {
+                        console.log(gameInfo)
+
                         return (
                             <UserGamePlay
-                                groupTime={group5Time && findTimeState(group1Time,group2Time,group3Time,group4Time,group5Time,index)}
-                                setGroupTime={group5Time && findTimeState(setGroup1Time,setGroup2Time,setGroup3Time,setGroup4Time,setGroup5Time,index)}
+                                groupTime={group5Time && findState(group1Time,group2Time,group3Time,group4Time,group5Time,index)}
+                                setGroupTime={group5Time && findState(setGroup1Time,setGroup2Time,setGroup3Time,setGroup4Time,setGroup5Time,index)}
                                 gameStart={gameStart}
+                                groupNumber={group5Time && findState('group1Status','group2Status','group3Status','group4Status','group5Status',index)}
                                 key={user.id}
                                 randomWords={randomWords}
                                 name={user.name}
                                 color={user.color}
                                 index={index}
                                 id={user.id}
+                                gameTurn={gameInfo.turns}
                                 userTurn={userTurn}
                                 setUserTurn={setUserTurn}
                             />

@@ -16,7 +16,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@Components/*": ["./src/Components/*"],
-      "@Styles/*": ["./src/styles/*"]
+      "@Styles/*": ["./src/styles/*"],
+      "@multipleGame/*": ["./src/pages/Games/multipleGame/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

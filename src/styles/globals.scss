@@ -26,3 +26,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.table{
+  border: 1px solid #fff;
+  td,th{
+    border: 1px solid #fff;
+    padding: 6px;
+  }
+}

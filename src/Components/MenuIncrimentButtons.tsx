@@ -1,4 +1,4 @@
-import React, { Dispatch, FC } from 'react'
+import { Dispatch, FC } from 'react'
 interface Props{
     state:number,
     setState:Dispatch<any>,
